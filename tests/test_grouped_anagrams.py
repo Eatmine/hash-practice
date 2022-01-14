@@ -26,24 +26,6 @@ def test_will_return_correct_result_for_readme_example():
         words.sort()
         assert words in expected_answer
 
-def test_works_for_strings_with_no_matching_anagrams():
-    # Arrange
-    words = ["eat", "ear", "tar", "pop", "pan", "pap"]
-
-    # Act
-    answer = grouped_anagrams(words)
-    expected_answer = [
-        ["eat"],
-        ["ear"],
-        ["tar"],
-        ["pop"],
-        ["pan"],
-        ["pap"]
-      ]
-
-    # Assert
-    assert answer == expected_answer
-
 def test_will_work_for_strings_that_are_all_anagrams():
     # Arrange
     words = ["eat", "tae", "tea", "eta", "aet", "ate"]
@@ -76,4 +58,24 @@ def test_will_work_for_strings_which_are_all_not_anagrams():
 
     for anagrams in expected_answer:
         assert len(anagrams) == 1
+        assert anagrams in expected_answer
+
+
+def test_will_work_for_strings_which_are_longer_words():
+    # Arrange
+    words = ["bored", "players", "sadder", "dreads", "robed", "parsley"]
+
+    # Act
+    answer = grouped_anagrams(words)
+    expected_answer = [
+        ["bored", "robed"],
+        ["parsley", "players"],
+        ["dreads", "sadder"],
+    ];
+
+    # Assert
+    assert len(answer) == 3
+
+    for anagrams in answer:
+        anagrams.sort()
         assert anagrams in expected_answer
